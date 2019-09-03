@@ -1,0 +1,50 @@
+<button nz-button (click)="showModal($event)">Open Editor</button>
+<nz-table #fixedTable [nzData]="listOfData" [nzScroll]="{ x: '960px'}">
+  <thead>
+    <!-- <tr>
+      <th nzWidth="150px" nzLeft="0px">Full Name</th>
+      <th nzWidth="100px" nzLeft="150px">Age</th>
+      <th nzWidth="100px">Column 1</th>
+      <th nzWidth="100px">Column 2</th>
+      <th nzWidth="100px">Column 3</th>
+      <th nzWidth="100px">Column 4</th>
+      <th nzWidth="100px">Column 5</th>
+      <th nzWidth="100px">Column 6</th>
+      <th nzWidth="100px">Column 7</th>
+      <th nzWidth="100px">Column 8</th>
+      <th nzWidth="100px" nzRight="0px">Action</th>
+    </tr> -->
+    <tr>
+      <th [nzLeft]="'0px'">Sl. No.</th>
+      <th *ngFor="let item of headers; let idx = index">
+        {{item.name}}
+      </th>
+      <th nzRight="0px">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of fixedTable.data; let idx = index">
+      <!-- <td nzLeft="0px">{{ data.name }}</td>
+      <td nzLeft="150px">{{ data.age }}</td>
+      <td>{{ data.address }}</td>
+      <td>{{ data.address }}</td>
+      <td>{{ data.address }}</td>
+      <td>{{ data.address }}</td>
+      <td>{{ data.address }}</td>
+      <td>{{ data.address }}</td>
+      <td>{{ data.address }}</td>
+      <td>{{ data.address }}</td> -->
+      <td nzLeft="0px">{{idx+1}}</td>
+      <td *ngFor="let item of headers">
+        <div class="wf-200">{{data.name}}</div>
+      </td>
+      <td nzRight="0px">
+        <a>action</a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <quill-editor [styles]="{height: '200px'}"></quill-editor>
+</nz-modal>
